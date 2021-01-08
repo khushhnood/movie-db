@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <title>movies</title>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="container">
+        <h1 class="text-center">
+          Movie with name : <%= query %>
+        </h1>
+        <% data['results'].forEach((movie)=>{ %>
+          <form action="/save" method="post">
+        <div class="row my-5">
+         
+           <div class="col-md-4 ">
+             <img src="https://image.tmdb.org/t/p/w600_and_h900_bestv2/<%= movie['poster_path']%>" alt="no image available" name="image" class="img-fluid img-thumbnail">
+           </div>
+           <div class="col-md-8 " style="border: 2px grey solid;">
+             <h1 class=" my-2" ><%=movie['original_title']%></h1>
+             <h4 class="text-muted my-2"><%=movie['release_date']%></h4>
+             <h5 class=" mb-2"><%=movie['overview']%></h6>
+              <input type='hidden' value="<%=movie['original_title']%>" name="title">
+              <input type='hidden' value="<%=movie['release_date']%>" name="date">
+              <input type='hidden' value="<%=movie['overview']%>" name="overview">
+              <input type="submit" value="save" class="btn btn-outline-info">
+           </div>
+           
+        </div>
+         </form>
+        <% }) %>
+
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>
